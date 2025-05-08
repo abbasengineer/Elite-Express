@@ -4,7 +4,11 @@ module.exports = function(api) {
     return {
       presets: ['babel-preset-expo'],
       plugins: [
-        ["nativewind/babel"]  // Note the array brackets
+        [
+            "nativewind/babel",
+            'react-native-reanimated/plugin'
+            
+        ]  // Note the array brackets
       ]
     };
   };

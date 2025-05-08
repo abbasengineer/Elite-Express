@@ -7,6 +7,9 @@ import HomeScreen from '../screens/main/HomeScreen';
 import ProfileScreen from '../screens/main/ProfileScreen';
 import BuySingleWashScreen from '../screens/main/BuySingleWashScreen';
 import LocationsScreen from '../screens/main/LocationsScreen';
+import GoUnlimitedScreen from '../screens/main/subscription/GoUnlimitedScreen';
+import ManageMembershipScreen from '../screens/main/ManageMembershipScreen';
+
 
 // Define the types for our tab navigation
 export type RootTabParamList = {
@@ -17,7 +20,9 @@ export type RootTabParamList = {
 export type HomeStackParamList = {
   HomeScreen: undefined;
   BuySingleWash: undefined;
+  ManageMembership: undefined;
   Locations: undefined;
+  GoUnlimited: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -29,7 +34,9 @@ function HomeStackNavigator() {
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
       <HomeStack.Screen name="BuySingleWash" component={BuySingleWashScreen} />
+      <HomeStack.Screen name="ManageMembership" component={ManageMembershipScreen} /> 
       <HomeStack.Screen name="Locations" component={LocationsScreen} />
+      <HomeStack.Screen name="GoUnlimited" component={GoUnlimitedScreen} />
     </HomeStack.Navigator>
   );
 }

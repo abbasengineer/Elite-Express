@@ -14,12 +14,16 @@ export default function HomeScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+        {/* Header with logo and black border bottom */}
         <View style={styles.header}>
           <Image
             source={require('../../../assets/ee_logo.png')}
             style={styles.logo}
           />
         </View>
+        
+        {/* Black section title */}
+        <Text style={styles.sectionTitle}>Rewards Progress</Text>
         
         <View style={styles.rewardsProgress}>
           <Text style={styles.rewardsText}>0</Text>
@@ -29,8 +33,14 @@ export default function HomeScreen({ navigation }: Props) {
           <Text style={styles.rewardsText}>100</Text>
         </View>
 
+        {/* Black section title */}
+        <Text style={styles.sectionTitle}>Services</Text>
+        
         <View style={styles.menuContainer}>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity 
+            style={styles.menuItemPrimary}
+            onPress={() => navigation.navigate('GoUnlimited')}
+          >
             <Text style={styles.menuItemText}>Go Unlimited</Text>
           </TouchableOpacity>
           
@@ -41,15 +51,19 @@ export default function HomeScreen({ navigation }: Props) {
             <Text style={styles.menuItemText}>Buy Single Wash</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={styles.menuItem}>
-            <Text style={styles.menuItemText}>Buy Washbook</Text>
+          <TouchableOpacity style={styles.menuItem}
+          onPress={() => navigation.navigate('ManageMembership')}>
+            <Text style={styles.menuItemText}>Manage Membership</Text>
           </TouchableOpacity>
           
           <TouchableOpacity style={styles.menuItem}>
             <Text style={styles.menuItemText}>Wash Wallet</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Locations')}>
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => navigation.navigate('Locations')}
+          >
             <Text style={styles.menuItemText}>Our Locations</Text>
           </TouchableOpacity>
           
@@ -58,7 +72,7 @@ export default function HomeScreen({ navigation }: Props) {
           </TouchableOpacity>
           
           <TouchableOpacity 
-            style={[styles.menuItem, { backgroundColor: '#e74c3c' }]}
+            style={styles.signOutButton}
             onPress={signOut}
           >
             <Text style={styles.menuItemText}>Sign Out</Text>
@@ -66,6 +80,7 @@ export default function HomeScreen({ navigation }: Props) {
         </View>
       </ScrollView>
       
+      {/* Black border top for tab bar */}
       <View style={styles.tabBar}>
         <TouchableOpacity style={styles.tabItem}>
           <Text style={[styles.tabText, styles.activeTab]}>Home</Text>
@@ -84,41 +99,71 @@ export default function HomeScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f9fafb',
+    backgroundColor: '#e6f0d0', // Light green background
   },
   header: {
-    backgroundColor: '#3498db',
-    padding: 15,
+    backgroundColor: '#3498db', // Blue header
+    padding: 20,
     alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 3,
+    borderBottomWidth: 3, // Added black border at bottom
+    borderBottomColor: '#222', // Dark, almost black color
   },
   logo: {
-    width: 120,
-    height: 60,
+    width: 180,
+    height: 90,
     resizeMode: 'contain',
+  },
+  // New section title style with black
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#222', // Dark, almost black
+    marginHorizontal: 15,
+    marginTop: 20,
+    marginBottom: 10,
+    paddingBottom: 5,
+    borderBottomWidth: 1, // Subtle bottom border
+    borderBottomColor: 'rgba(0,0,0,0.1)', // Very light black
   },
   rewardsProgress: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 15,
     backgroundColor: '#fff',
+    marginHorizontal: 15,
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+    borderWidth: 1, // Very subtle black border
+    borderColor: 'rgba(0,0,0,0.05)', // Very light black
   },
   rewardsText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#222', // Darker black text
   },
   progressBar: {
     flex: 1,
-    height: 8,
+    height: 10,
     backgroundColor: '#f0f0f0',
-    borderRadius: 4,
+    borderRadius: 5,
     marginHorizontal: 10,
+    borderWidth: 1, // Subtle border
+    borderColor: 'rgba(0,0,0,0.1)', // Very light black
   },
   progressFill: {
-    width: '0%', // This would be dynamic based on rewards
+    width: '30%',
     height: '100%',
-    backgroundColor: '#3498db',
-    borderRadius: 4,
+    backgroundColor: '#a0ce4e',
+    borderRadius: 5,
   },
   menuContainer: {
     padding: 15,
@@ -126,31 +171,71 @@ const styles = StyleSheet.create({
   menuItem: {
     backgroundColor: '#3498db',
     padding: 20,
-    borderRadius: 8,
+    borderRadius: 12,
     marginBottom: 15,
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#2980b9',
+    shadowColor: "#000", // Black shadow
+    shadowOffset: { width: 0, height: 4 }, // More pronounced shadow
+    shadowOpacity: 0.2, // Stronger shadow
+    shadowRadius: 3,
+    elevation: 3,
+    borderWidth: 1, // Subtle black border
+    borderColor: 'rgba(0,0,0,0.1)', // Very light black
+  },
+  menuItemPrimary: {
+    backgroundColor: '#a0ce4e',
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 15,
+    alignItems: 'center',
+    shadowColor: "#000", // Black shadow
+    shadowOffset: { width: 0, height: 4 }, // More pronounced shadow
+    shadowOpacity: 0.2, // Stronger shadow
+    shadowRadius: 3,
+    elevation: 3,
+    borderWidth: 1, // Subtle black border
+    borderColor: 'rgba(0,0,0,0.1)', // Very light black
   },
   menuItemText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+    textShadowColor: 'rgba(0,0,0,0.3)', // Subtle black text shadow
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  signOutButton: {
+    backgroundColor: '#e74c3c',
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 15,
+    alignItems: 'center',
+    shadowColor: "#000", // Black shadow
+    shadowOffset: { width: 0, height: 4 }, // More pronounced shadow
+    shadowOpacity: 0.2, // Stronger shadow
+    shadowRadius: 3,
+    elevation: 3,
+    borderWidth: 1, // Subtle black border
+    borderColor: 'rgba(0,0,0,0.2)', // Very light black
   },
   tabBar: {
     flexDirection: 'row',
-    borderTopWidth: 1,
-    borderTopColor: '#ddd',
+    borderTopWidth: 1, // Thicker black border top
+    borderTopColor: '#222', // Dark, almost black
     backgroundColor: 'white',
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 12,
+    justifyContent: 'center',
+    height: 40,
+
   },
   tabText: {
     fontSize: 14,
     color: '#888',
+    padding: 0,
+    margin:0,
   },
   activeTab: {
     color: '#3498db',
